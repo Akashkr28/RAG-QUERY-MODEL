@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/dockerfile
+
+    volumes:
+      - ../..:/workspace:cached
+
+    command: sleep infinity
+
+  valkey:
+    image: valkey/valkey:latest
+
+  vector-db:
+    image: qdrant/qdrant:latest
