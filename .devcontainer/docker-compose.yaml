@@ -9,6 +9,9 @@ services:
 
     command: sleep infinity
 
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+
   valkey:
     image: valkey/valkey:latest
 
