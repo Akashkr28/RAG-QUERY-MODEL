@@ -3,19 +3,27 @@ from langchain_qdrant import QdrantVectorStore
 from langchain_openai import OpenAIEmbeddings
 from openai import OpenAI
 from dotenv import load_dotenv
+import os
 
-load_dotenv()
+load_dotenv(override=True)
 
-client = OpenAI()
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    raise ValueError("❌ Missing OPENAI_API_KEY. Please set it in your .env file.")
+
+
+client = OpenAI(api_key=api_key)
+
 
 # Vector Embeddings
 embedding_model = OpenAIEmbeddings(
     model="text-embedding-3-large",
+    api_key=os.getenv("OPENAI_API_KEY"),
 )
 
 vector_db = QdrantVectorStore.from_existing_collection(
     url="http://vector-db:6333",
-    collection_name="my_collection",
+    collection_name="learning_nodejs",
     embedding=embedding_model,
 )
 
@@ -39,7 +47,7 @@ def process_query(query: str):
     
     chat_completion = client.chat.completions.create(
     model="gpt-4.1",
-        message=[
+        messages=[
             { "role": "system", "content": SYSTEM_PROMPT },
             { "role": "user", "content": query }
         ]

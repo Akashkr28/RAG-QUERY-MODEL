@@ -1,2 +1,53 @@
+# === Environment & Secrets ===
 .env
+my_queue/.env
+worker.sh
+
+# === Python cache / build ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.egg
+*.log
+
+# === Virtual environments ===
+venv/
+.env/
+.venv/
+
+# === Docker & Dev Container ===
 .devcontainer/.env
+.devcontainer/.devcontainer.json
+qdrant_storage/
+valkey_data/
+*.pid
+*.sock
+*.log
+
+# === IDE / Editor files ===
+.vscode/
+.idea/
+.DS_Store
+
+# === Temporary files ===
+*.tmp
+*.bak
+*.swp
+
+# === NodeJS / Frontend (future proofing for full-stack work) ===
+node_modules/
+dist/
+build/
+.next/
+out/
+.env.local
+.env.development
+.env.production
+
+# === Project-specific ===
+*.pdf
+*.sqlite3
+*.db
